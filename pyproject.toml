@@ -8,8 +8,14 @@ authors = ["LewisCollum <lewiscollum4@gmail.com>"]
 python = "^3.9"
 pytest = "^6.2.5"
 black = "^21.10b0"
+selenium = "^4.0.0"
+keyring = "^23.2.1"
+sagecipher = "^0.7.5"
 
 [tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+jobscraper = "jobscraper.__main__:main"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
