@@ -8,6 +8,8 @@ from selenium.webdriver.common.keys import Keys
 import keyring
 import re
 from getpass import getpass
+import random
+import time
 
 driver = webdriver.Chrome()
 
@@ -57,7 +59,9 @@ def search():
     xpath = '//button[text()="Search"]'
     driver.find_element_by_xpath(xpath).click()
 
-
+def s():
+    time.sleep(random.uniform(0.5, 1.5))
+    
 def main():
     driver.implicitly_wait(4)
 
@@ -65,27 +69,38 @@ def main():
     driver.find_element_by_id("username").send_keys(getUsername())
     driver.find_element_by_id("password").send_keys(getPassword())
     driver.find_element_by_id("password").send_keys(Keys.RETURN)
-
+    s()
+    
     driver.get("https://www.linkedin.com/jobs/")
 
     bars = driver.find_elements_by_class_name("jobs-search-box__text-input")
     keywordSearch = bars[0]
     locationSearch = bars[3]
 
+    s()
     keywordSearch.send_keys("Python")
+    s()
     locationSearch.send_keys("Remote")
+    s()
     search()
-
+    s()
+    
     datePostedDropdown = driver.find_element_by_xpath('//*[text()="Date Posted"]')
     datePostedDropdown.click()
+    s()
     today = "timePostedRange-r86400"
     driver.execute_script(f"document.getElementById('{today}').click()")
+    s()
     datePostedDropdown.click()
+    s()
 
     datePostedDropdown = driver.find_element_by_xpath('//*[text()="Job Type"]')
     datePostedDropdown.click()
+    s()
     driver.execute_script("document.getElementById('jobType-F').click()")
+    s()
     datePostedDropdown.click()
+    s()
 
 
 if __name__ == "__main__":
